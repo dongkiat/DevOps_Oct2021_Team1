@@ -25,6 +25,9 @@
 #Imports
 import random
 
+def add1(n: int):
+    return n + 1;
+
 #Main Menu
 #----------------------#
 def displayMainMenu():
