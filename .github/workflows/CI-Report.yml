@@ -47,4 +47,4 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: artifacts/**/*.xml
-          fail-on: nothing
+          fail-on: "nothing"
