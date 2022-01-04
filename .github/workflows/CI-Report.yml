@@ -28,7 +28,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v2
         with:
-          name: Unit Test Results (Python ${{ matrix.python-version }})
+          name: Unit Test Results
           path: pytest.xml
 
   publish-test-results:
@@ -47,3 +47,4 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           files: artifacts/**/*.xml
+          fail-on: "nothing"
