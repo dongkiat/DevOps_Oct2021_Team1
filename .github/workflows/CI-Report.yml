@@ -29,4 +29,3 @@ jobs:
         if: always()
         with:
           files: report.xml
-          fail_on: nothing
