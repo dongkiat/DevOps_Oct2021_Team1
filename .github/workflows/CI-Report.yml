@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Build and Test (Python ${{ matrix.python-version }})
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
@@ -29,22 +29,11 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Unit Test Results
-          path: pytest.xml
+          path: report.xml
 
-  publish-test-results:
-    name: "Publish Unit Tests Results"
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    if: always()
-
-    steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v2
+      - name: "Publish Unit Tests Results"
+        uses: EnricoMi/publish-unit-test-result-action@v1.25
+        if: always()
         with:
-          path: artifacts
-
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        with:
-          files: artifacts/**/*.xml
+          files: report.xml
           fail-on: "nothing"
