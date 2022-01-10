@@ -18,7 +18,7 @@ jobs:
       - name: Pre-Compile Setup
         run: |
           pip install pyinstaller
-          python -m pyinstaller main.py
+          python -m PyInstaller main.py
           mkdir src
           mv main.py main.spec requirements.txt -t ./src
 
