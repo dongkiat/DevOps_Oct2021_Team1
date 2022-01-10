@@ -100,4 +100,7 @@ def startGame():
             print('What the hell did you just put?')
             continue
 
+if __name__ == "__main__":
+    print("hello")
+
 
