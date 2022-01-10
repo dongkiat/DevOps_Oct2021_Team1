@@ -1,9 +1,6 @@
 name: Deployment
 
-on:
-  push:
-    tags:
-      - "v*"
+on: [push]
 
 jobs:
   deploy:
@@ -13,7 +10,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+
+      - name: Pre-Compile Setup
+        run: |
+          pip install pyinstaller
+          python -m pyinstaller main.py
+          mkdir src
+          mv main.py main.spec requirements.txt -t ./src
+
       - name: Compile into Executable
         uses: JackMcKew/pyinstaller-action-windows@main
         with:
-          path: .
+          path: src
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: SimpCityExecutable
+          path: src/dist/windows
