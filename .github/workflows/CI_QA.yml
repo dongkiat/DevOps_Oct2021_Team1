@@ -83,7 +83,28 @@ jobs:
             --header "Authorization: Token 831bd6c0-be86-438e-8f52-458dd7cc553d" \
             --header "Content-Type: application/json" \
             --data "{
-              \"value\":\"${{env.PASSED}} %\",
+              \"values\":[
+                {
+                  \"line\":\"Total Test Cases\",
+                  \"value\":\"${{env.TOTAL}} %\"
+                },
+                {
+                  \"line\":\"Passed\",
+                  \"value\":\"${{env.PASSED}} %\"
+                },
+                {
+                  \"line\":\"Failed\",
+                  \"value\":\"${{env.FAILED}} %\"
+                },
+                {
+                  \"line\":\"Pass Rate\",
+                  \"value\":\"${{env.PASSRATE}} %\"
+                },
+                {
+                  \"line\":\"Executed\",
+                  \"value\":\"${{env.EXECUTED}} %\"
+                }
+              ],
               \"sha\":\"${GITHUB_SHA}\"
             }" \
-            https://seriesci.com/api/np-devops-team1/DevOps_Experimentation/:series/one
+            https://seriesci.com/api/np-devops-team1/DevOps_Experimentation/:series/many
