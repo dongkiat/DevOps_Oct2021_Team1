@@ -67,7 +67,6 @@ jobs:
           error=$(xmllint --xpath "string(//*[local-name()='testsuite']/@errors)" artifacts/pytest.xml)
           passed=$((total-skipped-failed-error))
           executed=$((total-skipped))
-          passrate=$((passed*100/executed))
           
           echo "TOTAL=$total" >> $GITHUB_ENV
           echo "SKIPPED=$skipped" >> $GITHUB_ENV
@@ -75,7 +74,6 @@ jobs:
           echo "ERROR=$error" >> $GITHUB_ENV
           echo "PASSED=$passed" >> $GITHUB_ENV
           echo "EXECUTED=$executed" >> $GITHUB_ENV
-          echo "PASSRATE=$passrate" >> $GITHUB_ENV
           
       - name: Send to SeriesCI
         run: |
@@ -95,10 +93,6 @@ jobs:
                 {
                   \"line\":\"Failed\",
                   \"value\":\"${{env.FAILED}} %\"
-                },
-                {
-                  \"line\":\"Pass Rate\",
-                  \"value\":\"${{env.PASSRATE}} %\"
                 },
                 {
                   \"line\":\"Executed\",
