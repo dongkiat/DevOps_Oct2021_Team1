@@ -72,6 +72,6 @@ jobs:
           
       - name: Calculate Metrics
         run: |
-          passed=$((TOTAL-FAILED))
+          passed=$(($TOTAL-$FAILED))
           echo "PASSED=$passed" >> $GITHUB_ENV
           echo "${{ env.PASSED }}"
