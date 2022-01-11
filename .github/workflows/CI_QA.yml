@@ -71,7 +71,7 @@ jobs:
           echo "$error"
       
       - name: Send Results to SeriesCI
-      - run: |
+        run: |
           curl \
             --header "Authorization: Token 831bd6c0-be86-438e-8f52-458dd7cc553d" \
             --header "Content-Type: application/json" \
