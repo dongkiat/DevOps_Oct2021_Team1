@@ -57,4 +57,5 @@ jobs:
         
       - name: Get XML Attributes
         run: |
+          apt install libxml2-utils
           xmllint --xpath "string(//*[local-name()='testsuites']/@tests)" artifacts/pytest.xml
