@@ -72,7 +72,11 @@ jobs:
       
       - name: Calculate Metrics
         run: |
-          passed=$((total-skipped-failed-error))
+          echo "$total"
+          echo "$skipped"
+          echo "$failed"
+          echo "$error"
+          passed=$[total-skipped-failed-error]
           echo "$passed"
       
       - name: Send Results to SeriesCI
