@@ -24,13 +24,10 @@ jobs:
     - name: Checkout Test Script
       uses: actions/checkout@v2
       with:
-        repository: lowkh2/DevOpsQARepo
-        path: tests
-        token: ${{ secrets.QA_REMOTE }}
+        files: test_main.py
         
     - name: Begin Pytest
       run: |
-        mv ./tests/*.* ./
         python -m pytest test --junit-xml pytest.xml
 
     - name: Upload Unit Test Results
