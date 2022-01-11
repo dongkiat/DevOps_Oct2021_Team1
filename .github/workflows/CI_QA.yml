@@ -73,11 +73,11 @@ jobs:
       
       - name: Calculate Metrics
         run: |
-          echo env.TOTAL
-          echo env.SKIPPED
-          echo env.FAILED
-          echo env.ERROR
-          export passed=$[env.TOTAL-env.SKIPPED-env.FAILED-env.ERROR]
+          echo $TOTAL
+          echo $SKIPPED
+          echo $FAILED
+          echo $ERROR
+          export passed=$[$TOTAL-$SKIPPED-$FAILED-$ERROR]
           echo "$passed"
       
       - name: Send Results to SeriesCI
