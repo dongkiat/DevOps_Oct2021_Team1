@@ -70,13 +70,22 @@ jobs:
           echo "$failed"
           echo "$error"
       
+      - name: Calculate Metrics
+        run: |
+          passed=$(($total-$skipped-$failed-$error))
+          executed=$(($total-$skipped))
+          passrate=$(($passed/$executed))
+          echo "$passed"
+          echo "$executed"
+          echo "$passrate"
+      
       - name: Send Results to SeriesCI
         run: |
           curl \
             --header "Authorization: Token 831bd6c0-be86-438e-8f52-458dd7cc553d" \
             --header "Content-Type: application/json" \
             --data "{
-                \"value\":\"10 %\",
+                \"value\":\"\"$passed\" %\",
                 \"sha\":\"${GITHUB_SHA}\"
               }" \
               https://seriesci.com/api/np-devops-team1/DevOps_Experimentation/:series/one
