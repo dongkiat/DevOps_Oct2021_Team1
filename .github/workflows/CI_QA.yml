@@ -73,20 +73,7 @@ jobs:
       
       - name: Calculate Metrics
         run: |
-          echo $TOTAL
-          echo $SKIPPED
-          echo $FAILED
-          echo $ERROR
-          export passed=$[$TOTAL-$SKIPPED-$FAILED-$ERROR]
-          echo "$passed"
-      
-      - name: Send Results to SeriesCI
-        run: |
-          curl \
-            --header "Authorization: Token 831bd6c0-be86-438e-8f52-458dd7cc553d" \
-            --header "Content-Type: application/json" \
-            --data "{
-                \"value\":\"$passed %\",
-                \"sha\":\"${GITHUB_SHA}\"
-              }" \
-              https://seriesci.com/api/np-devops-team1/DevOps_Experimentation/:series/one
+          echo "$TOTAL"
+          echo "$SKIPPED"
+          echo "$FAILED"
+          echo "$ERROR"
