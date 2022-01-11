@@ -18,7 +18,7 @@ jobs:
       - name: Pre-Compile Setup
         run: |
           pip install pyinstaller==3.6
-          python -m PyInstaller main.py
+          python -m PyInstaller --onefile main.py
           mkdir src
           mv main.py main.spec requirements.txt -t ./src
 
@@ -30,4 +30,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: SimpCityExecutable
-          path: src/dist/windows
+          path: src/dist/windows/main.exe
