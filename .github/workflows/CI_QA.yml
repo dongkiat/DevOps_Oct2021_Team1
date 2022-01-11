@@ -62,13 +62,16 @@ jobs:
       - name: Save XML Attributes
         run: |
           total=$(xmllint --xpath "string(//*[local-name()='testsuite']/@tests)" artifacts/pytest.xml)
-          echo "TOTAL=$total" >> $GITHUB_ENV
           skipped=$(xmllint --xpath "string(//*[local-name()='testsuite']/@skipped)" artifacts/pytest.xml)
-          echo "SKIPPED=$skipped" >> $GITHUB_ENV
           failed=$(xmllint --xpath "string(//*[local-name()='testsuite']/@failures)" artifacts/pytest.xml)
-          echo "FAILED=$failed" >> $GITHUB_ENV
           error=$(xmllint --xpath "string(//*[local-name()='testsuite']/@errors)" artifacts/pytest.xml)
+          passed=$((total-skipped-failed-error))
+          
+          echo "TOTAL=$total" >> $GITHUB_ENV
+          echo "SKIPPED=$skipped" >> $GITHUB_ENV
+          echo "FAILED=$failed" >> $GITHUB_ENV
           echo "ERROR=$error" >> $GITHUB_ENV
+          echo "PASSED=$passed" >> $GITHUB_ENV
           
       - name: Calculate Metrics
         run: |
