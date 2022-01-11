@@ -59,7 +59,7 @@ jobs:
         id: getxml
         uses: mavrosxristoforos/get-xml-info@1.0
         with:
-          xml-file: 'pytest.xml'
+          xml-file: artifacts/**/*.xml
           xpath: '//testsuites'
         
       - name: Update Series
