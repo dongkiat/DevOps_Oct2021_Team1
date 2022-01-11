@@ -66,13 +66,20 @@ jobs:
           failed=$(xmllint --xpath "string(//*[local-name()='testsuite']/@failures)" artifacts/pytest.xml)
           error=$(xmllint --xpath "string(//*[local-name()='testsuite']/@errors)" artifacts/pytest.xml)
           passed=$((total-skipped-failed-error))
+          executed=$((total-skipped))
+          passrate=$((passed/executed))
           
           echo "TOTAL=$total" >> $GITHUB_ENV
           echo "SKIPPED=$skipped" >> $GITHUB_ENV
           echo "FAILED=$failed" >> $GITHUB_ENV
           echo "ERROR=$error" >> $GITHUB_ENV
           echo "PASSED=$passed" >> $GITHUB_ENV
+          echo "EXECUTED=$executed" >> $GITHUB_ENV
+          echo "PASSRATE=$passrate" >> $GITHUB_ENV
+          
           
       - name: Calculate Metrics
         run: |
           echo "${{ env.PASSED }}"
+          echo "${{ env.EXECUTED }}"
+          echo "${{ env.PASSRATE }}"
