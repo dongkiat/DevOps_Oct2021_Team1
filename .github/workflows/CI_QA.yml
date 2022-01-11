@@ -28,7 +28,7 @@ jobs:
         
     - name: Begin Pytest
       run: |
-        python -m pytest test --junit-xml pytest.xml
+        python -m pytest test_main.py --junit-xml pytest.xml
 
     - name: Upload Unit Test Results
       if: always()
