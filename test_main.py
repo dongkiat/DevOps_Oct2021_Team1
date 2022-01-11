@@ -7,4 +7,4 @@ def test_Pass():
     assert add1(1) == 2
 
 def test_Failing():
-    assert add1(2) == 2
+    assert add1(2) == 4
