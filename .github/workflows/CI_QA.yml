@@ -63,9 +63,33 @@ jobs:
         run: |
           total=$(xmllint --xpath "string(//*[local-name()='testsuite']/@tests)" artifacts/pytest.xml)
           skipped=$(xmllint --xpath "string(//*[local-name()='testsuite']/@skipped)" artifacts/pytest.xml)
-          failed=$(xmllint --xpath "string(//*[local-name()='testsuite']/@failure)" artifacts/pytest.xml)
-          error=$(xmllint --xpath "string(//*[local-name()='testsuite']/@error)" artifacts/pytest.xml)
+          failed=$(xmllint --xpath "string(//*[local-name()='testsuite']/@failures)" artifacts/pytest.xml)
+          error=$(xmllint --xpath "string(//*[local-name()='testsuite']/@errors)" artifacts/pytest.xml)
           echo "$total"
           echo "$skipped"
           echo "$failed"
           echo "$error"
+      
+      - name: Send Results to SeriesCI
+      - run: |
+          curl \
+            --header "Authorization: Token 831bd6c0-be86-438e-8f52-458dd7cc553d" \
+            --header "Content-Type: application/json" \
+            --data "{
+              \"values\":[
+                { 
+                  \"line\":\"Total Tests Created\",
+                  \"value\":\"${total}\"
+                },
+                {
+                  \"line\":\"Failed\",
+                  \"value\":\"${failed}\"
+                },
+                {
+                  \"line\":\"Skipped\",
+                  \"value\":\"${skipped}\"
+                }
+              ],
+              \"sha\":\"${GITHUB_SHA}\"
+            }" \
+            https://seriesci.com/api/np-devops-team1/DevOps_Experimentation/:series/many
