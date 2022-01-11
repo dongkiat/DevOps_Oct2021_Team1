@@ -37,13 +37,20 @@ jobs:
         name: results
         path: pytest.xml
         
-    - name: Download Artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: results
-        path: artifacts
+  publish-test-results:
+    name: "Publish Unit Tests Results"
+    needs: build
+    runs-on: ubuntu-latest
+    if: always()
 
-    - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1
-      with:
-        files: artifacts/**/*.xml
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: results
+          path: artifacts
+
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          files: artifacts/**/*.xml
