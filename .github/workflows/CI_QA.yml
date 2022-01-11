@@ -34,12 +34,13 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v2
       with:
-        name: Unit Test Results
+        name: results
         path: pytest.xml
         
     - name: Download Artifacts
       uses: actions/download-artifact@v2
       with:
+        name: results
         path: artifacts
 
     - name: Publish Unit Test Results
