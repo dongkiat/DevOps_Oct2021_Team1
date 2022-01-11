@@ -67,7 +67,7 @@ jobs:
           error=$(xmllint --xpath "string(//*[local-name()='testsuite']/@errors)" artifacts/pytest.xml)
           passed=$((total-skipped-failed-error))
           executed=$((total-skipped))
-          passrate=$((passed/executed))
+          passrate=$((passed*100/executed))
           
           echo "TOTAL=$total" >> $GITHUB_ENV
           echo "SKIPPED=$skipped" >> $GITHUB_ENV
@@ -77,9 +77,13 @@ jobs:
           echo "EXECUTED=$executed" >> $GITHUB_ENV
           echo "PASSRATE=$passrate" >> $GITHUB_ENV
           
-          
-      - name: Calculate Metrics
+      - name: Send to SeriesCI
         run: |
-          echo "${{ env.PASSED }}"
-          echo "${{ env.EXECUTED }}"
-          echo "${{ env.PASSRATE }}"
+          curl \
+            --header "Authorization: Token 831bd6c0-be86-438e-8f52-458dd7cc553d" \
+            --header "Content-Type: application/json" \
+            --data "{
+              \"value\":\"${{env.PASSED}} %\",
+              \"sha\":\"${GITHUB_SHA}\"
+            }" \
+            https://seriesci.com/api/np-devops-team1/DevOps_Experimentation/:series/one
