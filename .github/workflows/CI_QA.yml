@@ -72,9 +72,9 @@ jobs:
       
       - name: Calculate Metrics
         run: |
-          passed=$(($total-$skipped-$failed-$error))
-          executed=$(($total-$skipped))
-          passrate=$(($passed/$executed))
+          passed=$((total-skipped-failed-error))
+          executed=$((total-skipped))
+          passrate=$((passed/executed))
           echo "$passed"
           echo "$executed"
           echo "$passrate"
