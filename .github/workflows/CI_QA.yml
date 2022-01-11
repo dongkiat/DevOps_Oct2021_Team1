@@ -1,7 +1,7 @@
 name: CI for QA
 
 on:
-  push:
+  pull_request:
     branches: [main]
     
 jobs:
@@ -38,7 +38,7 @@ jobs:
         path: pytest.xml
         
   publish-test-results:
-    name: "Publish Unit Tests Results"
+    name: publish test results
     needs: build
     runs-on: ubuntu-latest
     if: always()
