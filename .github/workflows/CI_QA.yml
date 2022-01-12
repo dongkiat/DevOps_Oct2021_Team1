@@ -24,11 +24,11 @@ jobs:
     - name: Checkout Test Script
       uses: actions/checkout@v2
       with:
-        files: test_main.py
+        repository: np-devops-team1/DevOps_Experimental
         
     - name: Begin Pytest
       run: |
-        python -m pytest test_main.py --junit-xml pytest.xml
+        python -m pytest --junit-xml pytest.xml
 
     - name: Upload Unit Test Results
       if: always()
