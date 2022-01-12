@@ -24,7 +24,9 @@ jobs:
     - name: Checkout Test Script
       uses: actions/checkout@v2
       with:
-        repository: np-devops-team1/DevOps_Experimental
+        files: |
+          test_main.py
+          test_main2.py
         
     - name: Begin Pytest
       run: |
