@@ -21,6 +21,8 @@ jobs:
         
         echo "${GITHUB_REF}"
         echo "$tag_branch" >> ${{env.TAG_BRANCH}}
+        echo "TAG_BRANCH=$(echo $tag_branch | cut -c 1-6)" >> $GITHUB_ENV
+
         echo "$tag_branch"
         echo "$name_branch"
         echo ${{env.TAG_BRANCH}}
