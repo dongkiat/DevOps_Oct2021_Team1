@@ -16,5 +16,8 @@ jobs:
         name_branch="$(cut -d'/' -f2 <<< ${GITHUB_REF#refs/heads/})"
         echo "TAG_BRANCH_SHORT=$(echo 'meowmeow')" >> $GITHUB_ENV
         echo "GITHUB_SHA_SHORT=$(echo 'meowmeow' | cut -c 1-6)" >> $GITHUB_ENV
-        echo $env.TAG_BRANCH_SHORT
-        echo $env.GITHUB_SHA_SHORT
+        echo $TAG_BRANCH_SHORT
+        echo $GITHUB_SHA_SHORT
+
+    - name: Test
+      run: echo $GITHUB_SHA_SHORT
