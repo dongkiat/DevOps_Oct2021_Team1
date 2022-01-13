@@ -1,24 +1,23 @@
-name: CI for Dev Unit Tests
-
+name: gsheet.action test
 on: push
+
 jobs:
-  build:
+  fetch:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-        
-    - name: Check branch name
-      if: startsWith(github.ref, 'refs/heads/test/')
-      run: |
-        tag_branch="$(cut -d'/' -f1 <<< ${GITHUB_REF#refs/heads/})"
-        name_branch="$(cut -d'/' -f2 <<< ${GITHUB_REF#refs/heads/})"
-        echo "TAG_BRANCH_SHORT=$(echo 'meowmeow')" >> $GITHUB_ENV
-        echo "GITHUB_SHA_SHORT=$(echo 'meowmeow' | cut -c 1-6)" >> $GITHUB_ENV
-        echo $TAG_BRANCH_SHORT
-        echo $GITHUB_SHA_SHORT
-        echo 'true'
-
-    - name: Test
-      run: echo $GITHUB_SHA_SHORT
+      - id: 'update_worksheet'
+        uses: jroehl/gsheet.action@v1.0.0 # you can specify '@release' to always have the latest changes
+        with:
+          spreadsheetId: 1quwJHo9mpur_1BPpvgaj03DGeDl8EhAuPRxd9AJxF4c
+          commands: | # list of commands, specified as a valid JSON string
+            [
+              { "command": "getWorksheet", "args": { "worksheetTitle": "Dev Tracker & Tests" }},
+            ]
+        env:
+          GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
+          GSHEET_PRIVATE_KEY: ${{ secrets.GSHEET_PRIVATE_KEY }}
+      - name: dump results
+        env:
+          #  the output of the action can be found in ${{ steps.update_worksheet.outputs.results }}
+          RESULTS: ${{ steps.update_worksheet.outputs.results }}
+        run: echo "$RESULTS" | jq
