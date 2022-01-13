@@ -5,6 +5,10 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TAG_BRANCH: name
+      NAME_BRANCH: name
+
     steps:
     - uses: actions/setup-python@v2
       with:
@@ -21,5 +25,5 @@ jobs:
         
         echo "$tag_branch"
         echo "$name_branch"
-        echo $TAG_BRANCH
-        echo $NAME_BRANCH
+        echo $env.TAG_BRANCH
+        echo $env.NAME_BRANCH
