@@ -5,10 +5,6 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      TAG_BRANCH: name
-      NAME_BRANCH: name
-
     steps:
     - uses: actions/setup-python@v2
       with:
@@ -18,10 +14,7 @@ jobs:
       run: |
         tag_branch="$(cut -d'/' -f1 <<< ${GITHUB_REF#refs/heads/})"
         name_branch="$(cut -d'/' -f2 <<< ${GITHUB_REF#refs/heads/})"
-        
-        echo "${GITHUB_REF}"
-        echo "$tag_branch" >> ${{env.TAG_BRANCH}}
-        echo "TAG_BRANCH=$(echo $tag_branch | cut -c 1-6)" >> $GITHUB_ENV
+        echo "TAG_BRANCH=$(echo $tag_branch)" >> $GITHUB_ENV
 
         echo "$tag_branch"
         echo "$name_branch"
