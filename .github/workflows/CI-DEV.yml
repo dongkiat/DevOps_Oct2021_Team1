@@ -12,6 +12,8 @@ jobs:
           commands: | # list of commands, specified as a valid JSON string
             [
               { "command": "getWorksheet", "args": { "worksheetTitle": "Task Tracker" }},
+              { "command": "updateData", "args": { "data": [["new", "old", "test"]] }}
+
             ]
         env:
           GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
