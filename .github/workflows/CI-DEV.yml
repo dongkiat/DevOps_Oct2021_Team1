@@ -11,7 +11,7 @@ jobs:
           spreadsheetId: 1quwJHo9mpur_1BPpvgaj03DGeDl8EhAuPRxd9AJxF4c
           commands: | # list of commands, specified as a valid JSON string
             [
-              { "command": "getWorksheet", "args": { "worksheetTitle": "Dev Tracker & Tests" }},
+              { "command": "getWorksheet", "args": { "worksheetTitle": "Task Tracker" }},
             ]
         env:
           GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
