@@ -11,9 +11,12 @@ jobs:
           spreadsheetId: 1quwJHo9mpur_1BPpvgaj03DGeDl8EhAuPRxd9AJxF4c
           commands: | # list of commands, specified as a valid JSON string
             [
-              { "command": "getWorksheet", "args": { "worksheetTitle": "Task Tracker" }},
-              { "command": "updateData", "args": { "data": [["new", "old", "test"]] }}
-
+              { "command": "appendData", "args": { "worksheetTitle": "test sheet", 
+                "minCol": 1,
+                "data": [
+                  ["itgc-compliance-action", "true", "true", "true", "false", "true", "false", "true", "true", "true", "false", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true"]
+                ]
+              } }
             ]
         env:
           GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
