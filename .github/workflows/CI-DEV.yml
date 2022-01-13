@@ -14,7 +14,7 @@ jobs:
               { "command": "appendData", "args": { "worksheetTitle": "test sheet", 
                 "minCol": 1,
                 "data": [
-                  ["itgc-compliance-action", "false", "true", "false", "true", "true", "true", "false", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true"]
+                  ["itgc-compliance-action", "True", "true", "false", "true", "true", "true", "false", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true"]
                 ]
               } }
             ]
