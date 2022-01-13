@@ -10,7 +10,7 @@ jobs:
         python-version: 3.8
         
     - name: Check branch name
-      if: github.ref == 'refs/heads/test/*'
+      if: contains(github.ref, 'refs/heads/test')
       run: |
         tag_branch="$(cut -d'/' -f1 <<< ${GITHUB_REF#refs/heads/})"
         name_branch="$(cut -d'/' -f2 <<< ${GITHUB_REF#refs/heads/})"
