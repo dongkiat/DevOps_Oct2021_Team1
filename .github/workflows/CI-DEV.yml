@@ -20,10 +20,8 @@ jobs:
         name_branch="$(cut -d'/' -f2 <<< ${GITHUB_REF#refs/heads/})"
         
         echo "${GITHUB_REF}"
-        echo "NAME_BRANCH=$(echo $name_branch)" >> $GITHUB_ENV
-        echo "TAG_BRANCH=$(echo $tag_branch)" >> $GITHUB_ENV
         
         echo "$tag_branch"
         echo "$name_branch"
-        echo $env.TAG_BRANCH
-        echo $env.NAME_BRANCH
+        echo ${{env.TAG_BRANCH}}
+        echo ${{env.NAME_BRANCH}}
