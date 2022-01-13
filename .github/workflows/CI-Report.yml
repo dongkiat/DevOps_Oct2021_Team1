@@ -10,6 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: CINotify Email
+        uses: cinotify/github-action@v1.1.0
+        with:
+          to: 'jasonleequansheng@gmail.com'
+          subject: 'building main'
+          body: 'This is a notification from GitHub actions.'
+
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -38,10 +45,4 @@ jobs:
         with:
           files: report.xml
           
-      - name: CINotify Email
-        uses: cinotify/github-action@v1.1.0
-        with:
-          to: 'jasonleequansheng@gmail.com'
-          subject: 'building main'
-          body: 'This is a notification from GitHub actions.'
 
