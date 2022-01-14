@@ -13,7 +13,7 @@ jobs:
             [
               { "command": "updateData", "args": { "worksheetTitle": "Code Coverage", 
                 "minCol": 1,
-                "data": ["test_branch_script_name"]
+                "data": [["test_branch_script_name"]]
               } }
             ]
         env:
