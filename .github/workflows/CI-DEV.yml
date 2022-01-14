@@ -11,7 +11,7 @@ jobs:
           spreadsheetId: 1quwJHo9mpur_1BPpvgaj03DGeDl8EhAuPRxd9AJxF4c
           commands: | # list of commands, specified as a valid JSON string
             [
-              { "command": "appendData", "args": { "worksheetTitle": "test sheet", 
+              { "command": "appendData", "args": { "worksheetTitle": "Code Coverage", 
                 "minCol": 1,
                 "data": [
                   ["itgc-compliance-action", "false", "false", "false", "true", "true", "false", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true", "true"]
