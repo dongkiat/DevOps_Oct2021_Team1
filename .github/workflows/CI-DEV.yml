@@ -10,11 +10,10 @@ jobs:
         with:
           spreadsheetId: 1quwJHo9mpur_1BPpvgaj03DGeDl8EhAuPRxd9AJxF4c
           commands: | # list of commands, specified as a valid JSON string
-            [
-              { "command": "updateData", "args": { "worksheetTitle": "Code Coverage", 
-                "minCol": 1,
-                "data": [["test_branch_script_name"]]
-              } }
+            [              
+              { "command": "appendData", "args": { "worksheetTitle": "Code Coverage", 
+                "minCol": 2,
+                "data": [["test_branch_script_name", "=IF(F2 > 90, "A", "B")"], "0", "40","100"]}
             ]
         env:
           GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
