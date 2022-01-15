@@ -13,7 +13,7 @@ jobs:
             [              
               { "command": "appendData", "args": { "worksheetTitle": "Code Coverage", 
                 "minCol": 2,
-                "data": [["test_branch_script_name", "=IF(F2 > 90, "A", "B")"], "0", "40","100"]}
+                "data": [["test_branch_script_name", "=IF(F2 > 90, "A", "B")", "0", "40","100"]}
             ]
         env:
           GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
