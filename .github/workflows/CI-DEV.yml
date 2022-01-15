@@ -23,7 +23,7 @@ jobs:
 
                 "command": "appendData", "args": { "worksheetTitle": "Code Coverage", 
                 "minCol": 2,
-                "data": [[$BRANCH_NAME, "0", "40","100"]] }
+                "data": [["${{BRANCH_NAME}}", "0", "40","100"]] }
               }
             ]
 
