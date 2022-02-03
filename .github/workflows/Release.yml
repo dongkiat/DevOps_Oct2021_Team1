@@ -2,7 +2,7 @@ name: Release
 
 on:
   release:
-    types: [published, released]
+    types: [published]
 
 jobs:
   release-actions:
@@ -19,4 +19,4 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           message: |
-            [TEST]New Release From Tag: ${{ GITHUB_REF }} Now Available! @dongkiat
+            [TEST]New Release From Tag: ${{ github.ref }} Now Available! @dongkiat
