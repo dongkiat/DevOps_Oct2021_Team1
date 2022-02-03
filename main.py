@@ -101,7 +101,7 @@ def startGame():
             continue
 
 if __name__ == "__main__":
-    a = input("hello, whats your name: ")
+    a = input("whats your name: ")
     print("nice to meet u " + a)
     input()
 
