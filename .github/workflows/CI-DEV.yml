@@ -27,8 +27,19 @@ jobs:
             ]
 
 
-      - name: dump results
-        env:
-          #  the output of the action can be found in ${{ steps.update_worksheet.outputs.results }}
-          RESULTS: ${{ steps.update_worksheet.outputs.results }}
-        run: echo "$RESULTS" | jq
+      - name: Begin Pytest
+        run: |
+          ls
+          mv ./tests/*.* ./
+          pytest --cov -v --junitxml=report.xml
+          echo "check for report.xml:"
+          ls
+      - if: ${{failure()}}
+        name: Create Issues
+        uses: nashmaniac/create-issue-action@v1.1
+        with:
+          title: Build Failed
+          token: ${{secrets.GITHUB_TOKEN}}
+          assignees: ${{github.actor}}
+          labels: workflow-failed
+          body: Workflow failed for commit ${{github.sha}} @ ${{github.ref}}
